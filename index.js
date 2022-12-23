@@ -10,7 +10,7 @@ require("dotenv").config();
 const port = process.env.PORT || 8800;
 
 // extra user
-const userRouter = require("./routes/users");
+const userRoute = require("./routes/users");
 const userAuth = require("./routes/auth");
 
 // mongoose.connect(
@@ -24,7 +24,7 @@ const userAuth = require("./routes/auth");
 // async await system handle database
 const databaseConnection = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/application");
+    await mongoose.connect("mongodb://127.0.0.1:27017/chat_application");
     console.log("Database connection is successfully");
   } catch (e) {
     console.log("Database is not connected!");
@@ -38,7 +38,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/api/users", userRouter);
+app.use("/api/users", userRoute);
 app.use("/api/auth", userAuth);
 
 app.get("/", (req, res) => {

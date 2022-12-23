@@ -1,10 +1,13 @@
-const auth = require("express").Router();
-const User = require("../models/User");
+const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
+const userSchema = require("../models/User");
+
+const User = new mongoose.model("User", userSchema);
 
 //=============================OUR APPLICATION ALL POST METHOD HERE=========================
 // Register API
-auth.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     // password new generate
     const salt = await bcrypt.genSalt(10);
@@ -26,7 +29,7 @@ auth.post("/register", async (req, res) => {
 });
 
 // =====================LOGIN API=====================
-auth.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     // user email check
     const user = await User.findOne({ email: req.body.email });
@@ -45,4 +48,4 @@ auth.post("/login", async (req, res) => {
   }
 });
 
-module.exports = auth;
+module.exports = router;

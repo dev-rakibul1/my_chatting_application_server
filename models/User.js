@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     username: {
       type: String,
@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    followings: {
+      type: Array,
+      default: [],
+    },
     followersPeople: {
       type: Array,
       default: [],
@@ -47,8 +51,26 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    desc: {
+      type: String,
+      maxLength: 80,
+    },
+    city: {
+      type: String,
+      maxLength: 40,
+      trim: true,
+    },
+    from: {
+      type: String,
+      maxLength: 40,
+      trim: true,
+    },
+    relationship: {
+      type: Number,
+      enum: [1, 2, 3],
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = userSchema;
