@@ -2,7 +2,19 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const userSchema = require("../models/User");
+
+// create a User models
 const User = new mongoose.model("User", userSchema);
+
+// I will do create some post API and plain the before how can i work it.
+/*
+ * update user
+ * delete user
+ * get a user
+ * follow a user
+ * unfollow a user
+ *
+ */
 
 // Update user
 router.put("/:id", async (req, res) => {

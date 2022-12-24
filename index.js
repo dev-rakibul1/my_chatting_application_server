@@ -12,6 +12,7 @@ const port = process.env.PORT || 8800;
 // extra user
 const userRoute = require("./routes/users");
 const userAuth = require("./routes/auth");
+const userPost = require("./routes/posts");
 
 // mongoose.connect(
 //   process.env.MONGO_CONNECTION_SHELL,
@@ -40,6 +41,7 @@ app.use(morgan("common"));
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", userAuth);
+app.use("/api/posts", userPost);
 
 app.get("/", (req, res) => {
   res.send("Welcome chat application");
