@@ -3,23 +3,24 @@ const mongoose = require("mongoose");
 // create our user post schema ans some validation here
 const postSchema = mongoose.Schema(
   {
-    userId: {
+    description: {
       type: String,
-      required: true,
+      maxLength: 1500,
+      required: [true, "Description is required!"],
     },
-    desc: {
-      type: String,
-      maxLength: 500,
-    },
-    img: {
+    image: {
       type: String,
     },
     likes: {
       type: Array,
       default: [],
     },
+    comments: {
+      type: Array,
+      default: [],
+    },
   },
   { timestamps: true }
 );
-
-module.exports = postSchema;
+const Post = mongoose.model("Posts", postSchema);
+module.exports = Post;

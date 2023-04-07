@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema(
+const userRegisterSchema = mongoose.Schema(
   {
     username: {
       type: String,
@@ -12,10 +12,10 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
+      required: [true, "Email is required!"],
       minLength: 5,
       maxLength: 30,
-      unique: true,
+      unique: [true, "Email must be unique!"],
       trim: true,
     },
 
@@ -72,5 +72,5 @@ const userSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-
-module.exports = userSchema;
+const UserRegister = mongoose.model("userRegisters", userRegisterSchema);
+module.exports = UserRegister;
